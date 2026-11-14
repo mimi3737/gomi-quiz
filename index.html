@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f1f7f3">
+  <title>世田谷区 ごみ分別クイズ</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="error-banner" class="error-banner" role="alert" aria-live="assertive" hidden></div>
+
+  <noscript>
+    <div class="error-banner">JavaScriptが無効になっています。ブラウザの設定で有効にしてください。</div>
+  </noscript>
+
+  <main class="app">
+    <header class="header">
+      <div class="header-top">
+        <div class="header-titles">
+          <p class="eyebrow">世田谷区</p>
+          <h1 class="title">ごみ分別クイズ</h1>
+          <p class="subtitle">この品目はどこに出す？</p>
+        </div>
+        <div class="best-pill" id="stat-best-wrap">
+          <span class="best-pill-label">自己ベスト</span>
+          <strong id="stat-best">0</strong>
+          <span class="best-pill-unit">問</span>
+        </div>
+      </div>
+
+      <dl class="stats" aria-label="成績">
+        <div class="stat">
+          <dt>正解数</dt>
+          <dd><strong id="stat-correct">0</strong><span class="stat-unit">問</span></dd>
+        </div>
+        <div class="stat">
+          <dt>正答率</dt>
+          <dd><strong id="stat-rate">-</strong></dd>
+        </div>
+        <div class="stat">
+          <dt>連続正解</dt>
+          <dd><strong id="stat-streak">0</strong><span class="stat-unit">問</span></dd>
+        </div>
+      </dl>
+    </header>
+
+    <section id="quiz" class="card quiz" aria-labelledby="question-label">
+      <div class="progress-head">
+        <p class="progress" id="progress">1問目 / 165問</p>
+        <p class="progress-remaining" id="progress-remaining">あと164問</p>
+      </div>
+      <div
+        class="progress-track"
+        id="progress-track"
+        role="progressbar"
+        aria-labelledby="progress"
+        aria-valuemin="1"
+        aria-valuemax="165"
+        aria-valuenow="1"
+      >
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+      <h2 class="question-label" id="question-label">この品目はどこに出す？</h2>
+      <p class="item-name" id="item-name">読み込み中…</p>
+    </section>
+
+    <section id="answers" class="answers" aria-label="分別区分を選んでください"></section>
+
+    <section id="result" class="card result" aria-live="polite" hidden>
+      <p class="result-heading" id="result-heading"></p>
+      <p class="best-update" id="best-update" hidden>自己ベスト更新！</p>
+      <p class="result-answer" id="result-answer"></p>
+      <div class="explanation" id="result-explanation" hidden>
+        <p class="explanation-label">解説</p>
+        <p class="result-supplement" id="result-supplement"></p>
+      </div>
+      <p class="result-fee" id="result-fee" hidden>有料の品目です</p>
+      <button type="button" class="next-button" id="next-button">
+        <span>次の問題へ</span>
+        <span class="button-arrow" aria-hidden="true">→</span>
+      </button>
+      <p class="key-hint">Enter でも次へ進めます</p>
+    </section>
+
+    <section id="complete" class="card complete" hidden aria-live="polite">
+      <div class="complete-header">
+        <div class="complete-medal" aria-hidden="true">✓</div>
+        <p class="complete-eyebrow">全問終了</p>
+        <p class="complete-title" id="complete-title">165問 おつかれさまでした</p>
+        <p class="complete-message" id="complete-message"></p>
+      </div>
+
+      <p class="best-update complete-best-update" id="complete-best-update" hidden>自己ベスト更新！</p>
+
+      <dl class="complete-stats">
+        <div class="complete-stat">
+          <dt>正解数</dt>
+          <dd id="complete-correct">0問</dd>
+        </div>
+        <div class="complete-stat">
+          <dt>正答率</dt>
+          <dd id="complete-rate">0%</dd>
+        </div>
+        <div class="complete-stat">
+          <dt>間違えた問題</dt>
+          <dd id="complete-wrong">0問</dd>
+        </div>
+      </dl>
+
+      <p class="complete-streak" id="complete-streak"></p>
+
+      <div class="complete-actions">
+        <button type="button" class="next-button" id="play-again">もう一度挑戦する</button>
+        <button
+          type="button"
+          class="secondary-button"
+          id="review-button"
+          aria-expanded="false"
+          aria-controls="review"
+          hidden
+        >間違えた問題を復習する</button>
+      </div>
+    </section>
+
+    <section id="review" class="card review" hidden aria-labelledby="review-title">
+      <div class="review-head">
+        <div>
+          <p class="review-eyebrow">ふりかえり</p>
+          <h2 class="review-title" id="review-title">間違えた問題</h2>
+        </div>
+        <button type="button" class="review-close" id="review-close">閉じる</button>
+      </div>
+      <p class="review-lead" id="review-lead"></p>
+      <ul class="review-list" id="review-list"></ul>
+      <button type="button" class="secondary-button review-back" id="review-back">結果に戻る</button>
+    </section>
+
+    <footer class="footer">
+      <button type="button" class="restart-button" id="restart">最初からやり直す</button>
+      <p class="source">出典: 世田谷区 ごみの分別方法（131121）</p>
+      <p class="source-note">自己ベストはこのブラウザに保存されます</p>
+    </footer>
+  </main>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

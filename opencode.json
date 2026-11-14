@@ -1,0 +1,26 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "chrome-devtools": {
+      "type": "local",
+      "command": [
+        "npx", "-y", "chrome-devtools-mcp@latest",
+        "--no-usage-statistics",
+        "--redact-network-headers",
+        "--screenshot-format=webp",
+        "--screenshot-quality=80",
+        "--screenshot-max-width=1280",
+        "--viewport=1280x800"
+      ],
+      "enabled": true,
+      "timeout": 30000
+    }
+  },
+  "tools": { "chrome-devtools_*": false },
+  "agent": {
+    "browser": {
+      "description": "Chrome DevTools でブラウザの動作確認・デバッグを行う",
+      "tools": { "chrome-devtools_*": true }
+    }
+  }
+}
